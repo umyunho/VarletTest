@@ -10,20 +10,25 @@ function ReviewList() {
     const [page, setPage] = useState(1); // 현재 페이지
     const [hasMore, setHasMore] = useState(true); // 더 로드할 데이터가 있는지 여부
     const [searchTerm, setSearchTerm] = useState(''); // 검색어
-    const [filteredReviews, setFilteredReviews] = useState([]); // 필터된 리뷰 목록
+    const [filteredReviews, setFilteredReviews] = useState([]);
     const navigate = useNavigate();
 
-    // 데이터 로드 함수
     const loadReviews = useCallback(async (pageNumber) => {
         try {
             const result = await axios.get(`/api/review/reviewList/${pageNumber}`);
             const { reviewList: newReviews, paging } = result.data;
 
             if (Array.isArray(newReviews) && newReviews.length > 0) {
-                setReviewList(prevReviews => [...prevReviews, ...newReviews]);
+                setReviewList(prevReviews => {
+                    const combinedReviews = [...prevReviews, ...newReviews];
+                    const uniqueReviews = Array.from(new Set(
+                        combinedReviews.map(review => review.rseq))
+                    ).map(rseq => combinedReviews.find(review => review.rseq === rseq));
+                    return uniqueReviews;
+                });
+                
                 setPage(pageNumber);
-
-                // 다음 페이지가 없으면 hasMore를 false로 설정
+                
                 if (!paging || (paging && paging.next === null)) {
                     setHasMore(false);
                 }
@@ -35,33 +40,32 @@ function ReviewList() {
         }
     }, []);
 
-    // 필터링 함수
-    const filterReviews = useCallback(() => {
-        if (searchTerm.trim() === '') {
-            setFilteredReviews(reviewList);
-        } else {
-            const lowercasedTerm = searchTerm.toLowerCase();
-            const filtered = reviewList.filter(review =>
-                review.title.toLowerCase().includes(lowercasedTerm) ||
-                review.userid.toLowerCase().includes(lowercasedTerm)
-            );
-            setFilteredReviews(filtered);
+    const filterReviews = useCallback(async () => {
+        try {
+            if (searchTerm.trim() === '') {
+                setFilteredReviews(reviewList);
+            } else {
+                const result = await axios.get('/api/review/reviewSearch', { 
+                    params: { query: searchTerm }
+                });
+                const reviews = result.data.reviewList; // 서버 응답의 데이터 구조에 맞게 필드 수정
+                setFilteredReviews(reviews); // 서버에서 받은 필터링된 결과를 상태에 저장
+            }
+        } catch (err) {
+            console.error(err);
         }
     }, [searchTerm, reviewList]);
 
-    // 스크롤 이벤트 핸들러
     const handleScroll = useCallback(() => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const scrollHeight = document.documentElement.scrollHeight;
-        const clientHeight = document.documentElement.clientHeight;
+        const scrollTop = document.documentElement.scrollTop; // 현재위치
+        const scrollHeight = document.documentElement.scrollHeight; // 스크롤 가능한 크기
+        const clientHeight = document.documentElement.clientHeight; // 내용물의 크기
 
-        // 스크롤이 페이지 하단에 도달했을 때
         if (scrollTop + clientHeight >= scrollHeight - 5 && hasMore) {
             loadReviews(page + 1);
         }
     }, [page, hasMore, loadReviews]);
 
-    // 컴포넌트 마운트 시 스크롤 이벤트 리스너 추가
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => {
@@ -69,22 +73,18 @@ function ReviewList() {
         };
     }, [handleScroll]);
 
-    // 초기 데이터 로드
     useEffect(() => {
         loadReviews(page);
     }, [loadReviews, page]);
 
-    // 검색어 변경 핸들러
-    function handleSearchChange(event) {
-        setSearchTerm(event.target.value);
-    }
-
-    // 검색어가 변경될 때마다 필터링
     useEffect(() => {
         filterReviews();
     }, [searchTerm, filterReviews]);
 
-    // 검색어 클리어 핸들러
+    function handleSearchChange(event) {
+        setSearchTerm(event.target.value);
+    }
+
     function handleClearSearch() {
         setSearchTerm('');
     }
@@ -93,14 +93,21 @@ function ReviewList() {
         navigate(`/reviewView/${rseq}`);
     }
 
+    function handleAddReview() {
+        navigate('/writeReview'); // 리뷰 작성 페이지로 이동
+    }
+
     return (
         <>
             <Heading />
-            <div className='subPage' style={{ paddingTop: '100px' }}>
-                <div className='reviewList' style={{ flex: "4" }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
+            <div >
+            <div className='background'><img src="http://localhost:8070/images/oceans.jpg"/></div>
+            </div>
+
+            <div className='reviewList' style={{ flex: "4" }} >
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center"}}>
                         <h2>Review List</h2>
-                        <button onClick={() => { navigate('/writeReview') }}>리뷰 작성</button>
+                        <button className="add-review-button" onClick={handleAddReview}>리뷰 작성</button>
                     </div>
                     <div className="search-container" style={{ marginBottom: "20px" }}>
                         <input
@@ -111,7 +118,7 @@ function ReviewList() {
                         />
                         {searchTerm && (
                             <button className="clear-button" onClick={handleClearSearch}>
-                                &times; {/* 'X' 문자 */}
+                                &times;
                             </button>
                         )}
                     </div>
@@ -125,10 +132,10 @@ function ReviewList() {
                         </div>
                         {
                             Array.isArray(filteredReviews) && filteredReviews.length > 0 ? (
-                                filteredReviews.map((review, idx) => (
-                                    <div className="row" key={idx}>
+                                filteredReviews.map((review) => (
+                                    <div className="row" key={review.rseq}>
                                         <div className="col">{review.rseq}</div>
-                                        <div className="col" style={{ textAlign: "left" }} onClick={() => onReviewView(review.rseq)}>
+                                        <div className="col" style={{ textAlign: "left", cursor: "pointer", textDecoration: "underline" }} onClick={() => onReviewView(review.rseq)}>
                                             {review.userid}
                                         </div>
                                         <div className="col">{review.title}</div>
@@ -141,10 +148,7 @@ function ReviewList() {
                             )
                         }
                     </div>
-                    {/* 로딩 중 표시 */}
-                    {hasMore && <div className="loading">Loading more reviews...</div>}
                 </div>
-            </div>
             <Footer />
         </>
     );

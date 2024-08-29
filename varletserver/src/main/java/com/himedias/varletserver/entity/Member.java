@@ -7,7 +7,6 @@ import org.hibernate.annotations.ColumnDefault;
 
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +46,7 @@ public class Member {
 
     @Size(max = 20)
     @Column(name = "zip_code", length = 20)
-    private String zipCode;
+    private String zip_code;
 
     @Size(max = 100)
     @Column(name = "address", length = 100)
@@ -57,8 +56,8 @@ public class Member {
     @Column(name = "d_address", length = 100)
     private String d_address;
 
-    @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "indate")
+    @ColumnDefault("CURRENT_TIMESTAMP")
     private Timestamp indate;
 
     @Column(name = "is_login")
@@ -72,15 +71,22 @@ public class Member {
     @Column(name = "snsid", length = 50)
     private String snsid;
 
+//    @Column(name = "point", length = 100)
+//    private int point;
+
     @Size(max = 300)
     @Column(name = "profileimg", length = 300)
     private String profileimg;
 
+    // 추가된 필드
+    @Column(name = "point")
+    @ColumnDefault("0") // 기본값 설정
+    private Integer point;
 
     // 사용자의 등급별 권한들이 저장
     @ElementCollection(fetch = FetchType.LAZY)
     @Builder.Default // Default: new ArrayList<>() 비어있는 리스트로 객체 저장
-    private List<MemberRole> memberRoleList = new ArrayList<MemberRole>();
+    private List<MemberRole> memberRoleList = new ArrayList<>();
 
     @PrePersist
     public void prePersist() {
@@ -92,6 +98,9 @@ public class Member {
         }
         if (indate == null) {
             indate = Timestamp.from(Instant.now());
+        }
+        if (point == null) {
+            point = 0;
         }
     }
 }

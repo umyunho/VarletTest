@@ -3,17 +3,15 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux';
 import { loginAction } from '../../store/userSlice';
-
 import { setCookie, getCookie} from "../../util/cookieUtil";
-
 import Heading from '../headerfooter/Heading';
 import Footer from '../headerfooter/Footer';
 import '../../style/login.css';
+import { data } from 'autoprefixer';
 
 function Login() {
     const [userid, setUserid] = useState('');
     const [pwd, setPwd] = useState('');
-    let lUser = useSelector(state=>state.user)
     const dispatch = useDispatch();  // 쓰기를 위한 함수 생성
     const navigate = useNavigate();
     async function onLoginLocal(){
@@ -40,15 +38,15 @@ function Login() {
         <>
         <Heading/>
         <div style={{ paddingTop: '100px' }}>
-            <div className='background'><img src="http://localhost:8070/images/Beach.jpg"/></div>
+            <div className='background'><img src="http://localhost:8070/images/oceans.jpg"/></div>
         </div>
         <div className="loginform" style={{paddingTop: '100px'}}>
             <div className='loginlabel'>로그인</div>
-            <div className='field'>
+            <div className='login_field'>
                 <label>아이디</label>
                 <input type="text" className='text'value={userid} onChange={(e)=>{ setUserid(e.currentTarget.value) }}/>
             </div>
-            <div className='field'>
+            <div className='login_field'>
                 <label>비밀번호</label>
                 <input type="password" value={pwd} onChange={(e)=>{ setPwd(e.currentTarget.value) }}/>
             </div>
@@ -58,7 +56,7 @@ function Login() {
             </div>
             <div  className='findbtn'>
             <button onClick={ ()=>{ navigate('/findId') } }>아이디 찾기</button>
-            <button onClick={ ()=>{ navigate('/join') } }>비밀번호 찾기</button>
+            <button onClick={ ()=>{ navigate('/findPwd') } }>비밀번호 찾기</button>
             </div>
             <div className='snslogin'>
                 <div className='chat'><img src="http://localhost:8070/images/chat.png"/></div>

@@ -14,9 +14,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/contents")
+@RequestMapping("/api/contents")
 public class ContentsController {
     @Autowired
     ContentsService cs;
@@ -28,12 +30,25 @@ public class ContentsController {
         paging.setPage(page);
         paging.setDisplayRow(10);
         paging.setSort(Sort.by(Sort.Order.desc("cseq")));
+
         Page<Contents> contentsPage = cs.getContentsList(paging);
+
         paging.setTotalCount((int) contentsPage.getTotalElements());
+
         paging.calPaging();
 
         result.put("contentsList", contentsPage.getContent());
         result.put("paging", paging);
+
+        return result;
+
+    }
+
+    @GetMapping("/recentContentsList")
+    public HashMap<String, Object> recentContentsList() {
+        HashMap<String, Object> result = new HashMap<String, Object>();
+
+        result.put("recentContentsList", cs.getRecentContents());
 
         return result;
 
@@ -48,12 +63,21 @@ public class ContentsController {
         return result;
     }
 
-    @PostMapping("/wrtieContents")
+    @PostMapping("/writeContents")
     public HashMap<String, Object> writeContents(@RequestBody Contents contents) {
         HashMap<String, Object> result = new HashMap<>();
+        System.out.println("-----writeContents-----");
+        System.out.println(contents.toString());
         cs.writeContents(contents);
         result.put("msg", "ok");
         return result;
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<Map<String, Object>> searchContents(@RequestParam("query") String query) {
+        List<Contents> contentsList = cs.searchContents(query); // 검색된 결과를 가져옵니다.
+        Map<String, Object> result = new HashMap<>();
+        result.put("contentsList", contentsList); // 리스트를 'contentsList' 필드로 래핑합니다.
+        return ResponseEntity.ok(result); // 객체 형태로 응답을 보냅니다.
+    }
 }

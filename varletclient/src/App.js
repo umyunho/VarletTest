@@ -9,15 +9,14 @@ import Qna from "./component/qna/Qna";
 import RCommunityList from "./component/request/RCommunityList";
 import RPostWrite from "./component/request/RPostWrite";
 import RCommunityView from "./component/request/RCommunityView";
+import RecommendWrite from "./component/request/RecommendWrite";
 import RCommunityUpdate from "./component/request/RCommunityUpdate";
-import RcCommunityWrite from "./component/request/RcCommunityWrite";
 import Join from './component/member/Join';
 import WriteQna from './component/qna/WriteQna';
 import QnaView from './component/qna/QnaView';
 import Mycourse from "./component/course/Mycourse";
 import Kakaosaveinfo from "./component/member/Kakaosaveinfo";
 import Naversaveinfo from "./component/member/Naversaveinfo";
-import Contents from "./component/contents/Contents";
 import ContentsList from "./component/contents/ContentsList";
 import Testcontents from "./component/contents/Testcontents";
 import ContentsView from "./component/contents/ContentsView";
@@ -28,10 +27,16 @@ import MyQna from "./component/member/MyQna";
 import MyRequest from "./component/member/MyRequest";
 import Notice from "./component/notice/Notice";
 import FindId from "./component/member/FindId";
+import FindPwd from "./component/member/FindPwd";
+import RePwd from "./component/member/RePwd";
+import House from "./component/house/House";
 
+import PostCode from "./component/popup/PostCode";
 
 import 'ckeditor5/ckeditor5.css';
 import ContentsWrite from "./component/contents/ContentsWrite";
+import Pay from "./component/pay/Pay";
+import CheckPwd from "./component/member/CheckPwd";
 
 // import WritePost from './component/post/WritePost';
 // import MyPage from './component/member/MyPage';
@@ -51,6 +56,8 @@ function App() {
         <Route path="/kakaosaveinfo/:nickname" element={<Kakaosaveinfo />} />
         <Route path="/naversaveinfo/:nickname" element={<Naversaveinfo />} />
         <Route path="/findId" element={<FindId />} />
+        <Route path="/findPwd" element={<FindPwd />} />
+        <Route path="/rePwd" element={<RePwd />} />
 
         
         {/* 고객센터 */}
@@ -68,33 +75,34 @@ function App() {
         <Route path="/rpostwrite" element={<RPostWrite />} /> 
         <Route path="/rCommunityView/:rnum" element={<RCommunityView />} />
         <Route path="/rCommunityUpdate/:rnum" element={<RCommunityUpdate />} />
-        <Route path="/rCommunityDetail/:rnum/rcCommunityWrite" element={<RcCommunityWrite />} />
+        <Route path="/recommendWrite" element={<RecommendWrite />} />
         
+
         
         <Route path="/mycourse" element={<Mycourse />} />
+        <Route path="/house" element={<House />} />
+        
         {/* 여행 콘텐츠 */}
-        <Route path="/contents" element={<ContentsList />} />
-        <Route path="/ctest" element={<Testcontents />} />
+        <Route path="/contentsList" element={<ContentsList />} />
+        <Route path="/testlist" element={<Testcontents />} />
         <Route path="/getContentsView/:cseq" element={<ContentsView />} />
 
         {/* 마이페이지 */}
         <Route path="/myPage" element={<MyPage />} />
+        <Route path="/checkPwd" element={<CheckPwd />} />
         <Route path="/myInfo" element={<MyInfo />} />
         <Route path="/myReview" element={<MyReview />} />
         <Route path="/myQna" element={<MyQna />} />
         <Route path="/myRequest" element={<MyRequest />} />
+
         {/* 공지사항 */}
         <Route path="/notice" element={<Notice />} />
         <Route path="/contentsWrite" element={<ContentsWrite />} />
+        {/* 결제 */}
+        <Route path="/pay" element={<Pay />} />
 
-        
-        {/* <Route path="/main" element={<Main />} />
-        <Route path="/writePost" element={<WritePost />} />
-        <Route path="/myPage" element={<MyPage />} />
-        <Route path="/postone/:postid" element={<Postone />} />
-        <Route path="/kakaosaveinfo/:nickname" element={<Kakaosaveinfo />} />
-        <Route path="/editProfile" element={<EditProfile />} />
-        <Route path="/memberPage/:membernick" element={<MemberPage />} /> */}
+        {/* 팝업창 */}
+        <Route path="/popup/postCode" element={<PostCode />} />
       </Routes>
     </div>
   );

@@ -1,28 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="dcb718ac-baae-4a1d-af6a-4a1ce41a5bd6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/varletclient/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/varletclient/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/varletclient/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/Main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/contents/ContentsList.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/contents/ContentsList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/contents/ContentsView.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/contents/ContentsView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/contents/ContentsWrite.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/contents/ContentsWrite.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/contents/CourseContents.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/contents/CourseContents.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/contents/Testcontents.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/contents/Testcontents.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/course/Mycourse.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/course/Mycourse.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/course/Timetable.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/course/Timetable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/course/Timetablemaker.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/course/Timetablemaker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/headerfooter/Heading.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/headerfooter/Heading.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/member/FindId.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/member/FindId.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/member/Join.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/member/Join.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/member/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/member/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/member/MyInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/member/MyInfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/member/MyPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/member/MyPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/member/MyQna.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/member/MyQna.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/member/MyRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/member/MyRequest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/member/MyReview.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/member/MyReview.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/notice/Notice.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/notice/Notice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/qna/Qna.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/qna/Qna.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/qna/QnaView.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/qna/QnaView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/qna/WriteQna.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/qna/WriteQna.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/varletclient/src/component/request/RCommunityList.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/request/RCommunityList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/request/RCommunityUpdate.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/request/RCommunityUpdate.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/varletclient/src/component/request/RCommunityView.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/request/RCommunityView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/varletclient/src/component/request/RcCommunityWrite.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/request/RcCommunityWrite.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/request/RPostWrite.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/request/RPostWrite.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/review/ReviewList.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/review/ReviewList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/review/ReviewView.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/review/ReviewView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/component/review/WriteReview.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/component/review/WriteReview.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/store/userSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/store/userSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/style/contents.css" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/style/contents.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/style/course.css" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/style/course.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/style/customer.css" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/style/customer.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/style/footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/style/footer.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/style/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/style/header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/style/join.css" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/style/join.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/style/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/style/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/style/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/style/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/style/mypage.css" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/style/mypage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/style/review.css" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/style/review.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/util/cookieUtil.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/util/cookieUtil.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/src/util/jwtUtil.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/src/util/jwtUtil.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletclient/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/varletclient/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/controller/ContentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/controller/ContentsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/controller/CourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/controller/CourseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/controller/DayscheduleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/controller/DayscheduleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/controller/MemberController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/controller/NoticeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/controller/NoticeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/controller/RCRecommendController.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/controller/RCRecommendController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/controller/RCommunityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/controller/RCommunityController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/dao/ImageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/dao/ImageRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/controller/ReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/controller/ReviewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/controller/TimetableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/controller/TimetableController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/dao/ContentsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/dao/ContentsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/dao/CourseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/dao/CourseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/dao/DayscheduleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/dao/DayscheduleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/dao/MemberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/dao/MemberRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/dao/RCommunityRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/dao/RCommunityRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/dao/RcrecommendRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/dao/RcrecommendRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/dao/ReviewRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/dao/ReviewRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/dao/TimetableRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/dao/TimetableRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/dto/MemberDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/dto/MemberDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/dto/Paging.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/dto/Paging.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/dto/Rcommunity/RCommunitySummary.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/dto/Rcommunity/RCommunitySummary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/dto/Rcommunity/RCommunityWrite.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/dto/Rcommunity/RCommunityWrite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/entity/Contents.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/entity/Contents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/entity/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/entity/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/entity/Qna.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/entity/Qna.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/entity/RCommunity.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/entity/RCommunity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/entity/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/entity/Review.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/security/CustomSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/security/CustomSecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/security/filter/JWTCheckFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/security/filter/JWTCheckFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/security/handler/APILoginFailHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/security/handler/APILoginFailHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/security/handler/APILoginSuccessHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/security/handler/APILoginSuccessHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/security/handler/CustomAccessDeniedHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/security/handler/CustomAccessDeniedHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/security/service/CustomUserDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/security/service/CustomUserDetailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/security/util/CustomJWTException.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/security/util/CustomJWTException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/security/util/JWTUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/security/util/JWTUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/service/ContentsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/service/ContentsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/service/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/service/CourseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/service/DayscheduleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/service/DayscheduleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/service/MemberService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/service/RCRecommendService.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/service/RCRecommendService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/service/RCommunityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/service/RCommunityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/service/ReviewService.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/service/ReviewService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/service/TimetableService.java" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/java/com/himedias/varletserver/service/TimetableService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/varletserver/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/varletserver/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/varletserver/src/main/webapp/path/to/uploads/images/RcommunityImages/10000005261723705681414.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/varletserver/src/main/webapp/path/to/uploads/images/RcommunityImages/691723705705338.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/varletserver/src/main/webapp/path/to/uploads/images/RcommunityImages/711723705664279.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/varletserver/src/main/webapp/path/to/uploads/images/RcommunityImages/711723705705597.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/varletserver/src/main/webapp/path/to/uploads/images/RcommunityImages/711723706103333.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/varletserver/src/main/webapp/path/to/uploads/images/RcommunityImages/721723705705597.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/varletserver/src/main/webapp/path/to/uploads/images/RcommunityImages/721723706103584.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,12 +112,12 @@
     &quot;assignee&quot;: &quot;umyunho&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Varlet-Himedia-JR/Varlet.git",
-    "accountId": "72bd8555-fd12-4528-9bdd-ff722a4bfb18"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Varlet-Himedia-JR/Varlet.git&quot;,
+    &quot;accountId&quot;: &quot;72bd8555-fd12-4528-9bdd-ff722a4bfb18&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -54,9 +128,13 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "yunho",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/프로그래밍 작업파일/하이미디어/Varlet/varletserver",
+    "last_opened_file_path": "D:/프로그래밍 작업파일/하이미디어/VarletTest/varletserver",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -80,6 +158,7 @@
       <workItem from="1722558476209" duration="9000" />
       <workItem from="1722817702148" duration="73000" />
       <workItem from="1723951484097" duration="12000" />
+      <workItem from="1724764597089" duration="607000" />
     </task>
     <servers />
   </component>

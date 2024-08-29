@@ -1,198 +1,231 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+import { useSelector, useDispatch } from 'react-redux';
+// import { loginAction, logoutAction } from '../store/userSlice';
+// import jaxios from '../util/jwtUtil';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+// import { setCookie, getCookie, removeCookie } from "../util/cookieUtil";
+import '../../style/main.css'
+import Footer from '../headerfooter/Footer';
+import Heading from '../headerfooter/Heading';
 
-function Testcontents() {
-  return (
-    <div>
-      <div class="flex flex-col min-h-dvh">
-  <header class="bg-background border-b px-4 lg:px-6 h-14 flex items-center">
-    <a class="flex items-center justify-center" href="#">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="size-6 text-primary"
-      >
-        <path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"></path>
-        <path d="M10 2c1 .5 2 2 2 5"></path>
-      </svg>
-      <span class="sr-only">Apple</span>
-    </a>
-    <nav class="ml-auto flex gap-4 sm:gap-6">
-      <a class="text-sm font-medium hover:underline underline-offset-4 text-primary-foreground" href="#">
-        iPhone 14
-      </a>
-      <a class="text-sm font-medium hover:underline underline-offset-4 text-primary-foreground" href="#">
-        iPhone 13
-      </a>
-      <a class="text-sm font-medium hover:underline underline-offset-4 text-primary-foreground" href="#">
-        iPhone 12
-      </a>
-      <a class="text-sm font-medium hover:underline underline-offset-4 text-primary-foreground" href="#">
-        iPhone 11
-      </a>
-    </nav>
-  </header>
-  <main class="flex-1">
-    <section class="w-full pt-12 md:pt-24 lg:pt-32">
-      <div class="container space-y-10 xl:space-y-16">
-        <div class="grid max-w-[1300px] mx-auto gap-4 px-4 sm:px-6 md:px-10 md:grid-cols-2 md:gap-16">
-          <div>
-            <img
-              src="/placeholder.svg"
-              width="800"
-              height="600"
-              alt="iPhone 14 Pro"
-              class="mx-auto aspect-[4/3] overflow-hidden rounded-xl object-cover object-center"
-            />
-          </div>
-          <div class="flex flex-col items-start space-y-4">
-            <h1 class="lg:leading-tighter text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl xl:text-[3.4rem] 2xl:text-[3.75rem]">
-              iPhone 14 Pro
-            </h1>
-            <p class="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-              The most advanced Pro camera system ever. A lightning-fast chip. And always-on display. iPhone 14 Pro
-              is a huge leap forward.
-            </p>
-            <button
-              class="whitespace-nowrap ring-offset-background focus-visible:ring-offset-2 inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-              href="#"
-            >
-              Buy Now
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="w-full py-12 md:py-24 lg:py-32">
-      <div class="container space-y-12 px-4 md:px-6">
-        <div class="flex flex-col items-center justify-center space-y-4 text-center">
-          <div class="space-y-2">
-            <h2 class="text-3xl font-bold tracking-tighter sm:text-5xl">All iPhone Models</h2>
-            <p class="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Browse through our selection of the latest iPhone models and find the one that's right for you.
-            </p>
-          </div>
-        </div>
-        <div class="mx-auto grid items-start gap-8 sm:max-w-4xl sm:grid-cols-2 md:gap-12 lg:max-w-5xl lg:grid-cols-3">
-          <div class="grid gap-4 bg-background rounded-lg p-6 shadow-sm">
-            <img
-              src="/placeholder.svg"
-              width="400"
-              height="300"
-              alt="iPhone 14 Pro"
-              class="mx-auto aspect-video overflow-hidden rounded-lg object-cover object-center"
-            />
-            <div class="grid gap-1">
-              <h3 class="text-lg font-bold">iPhone 14 Pro</h3>
-              <p class="text-sm text-muted-foreground">$999</p>
-              <button
-                class="whitespace-nowrap ring-offset-background focus-visible:ring-offset-2 inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                href="#"
-              >
-                Buy
-              </button>
+function TestContents() {
+    return (
+        <>
+            <Heading />
+            {/* <div className="flex min-h-[100dvh] flex-col">
+                <section className="w-full bg-gradient-to-r from-[#1e90ff] to-[#1e90ff] py-20 md:py-32" style={{
+                            backgroundImage: 'url(http://localhost:8070/images/oceans.jpg)',
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            width: '100%',   // 원하는 너비 설정
+                            zIndex:0
+                        }}>
+
+                    <div className="container  mx-auto flex flex-col items-center justify-center gap-8 px-4 md:flex-row md:gap-12"
+                        >
+                        <div className="max-w-xl space-y-4 text-center md:text-left bg-gradient-to-r from-[#1e90ff] to-[#1e90ff]" >
+                            <h1 className="text-4xl font-bold tracking-tighter text-white sm:text-5xl md:text-6xl">
+                                Welcome to the Trip Community
+                            </h1>
+                            <p className="text-lg text-white md:text-xl">
+                                Connect with fellow travelers, share your experiences, and plan your next adventure.
+                            </p>
+                            <div className="flex justify-center md:justify-start">
+                                <button className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-11 rounded-md px-8">
+                                    Join Now
+                                </button>
+                            </div>
+                        </div>
+                        <img
+                            src="https://via.placeholder.com/600x400?text=Slide+1"
+                            width="600"
+                            height="400"
+                            alt="Trip Community"
+                            style={{ aspectRatio: '600 / 400', objectFit: 'cover' }}
+                            className="mx-auto w-full max-w-md rounded-xl object-cover md:mx-0"
+                        />
+                    </div>
+                </section>
+                <section className="w-full bg-[#F0F8FF] py-16 md:py-24">
+                    <div className="container mx-auto grid grid-cols-1 gap-8 px-4 sm:grid-cols-2 lg:grid-cols-3">
+                        <div className="flex flex-col items-center gap-4 rounded-lg bg-white p-6 shadow-md transition-all hover:scale-105 hover:shadow-lg">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="h-12 w-12 text-[#1e90ff]"
+                            >
+                                <path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"></path>
+                                <path d="M15 5.764v15"></path>
+                                <path d="M9 3.236v15"></path>
+                            </svg>
+                            <h3 className="text-xl font-bold">Explore the World</h3>
+                            <p className="text-[#808080]">
+                                Discover new destinations, plan your trips, and connect with like-minded travelers.
+                            </p>
+                        </div>
+                        <div className="flex flex-col items-center gap-4 rounded-lg bg-white p-6 shadow-md transition-all hover:scale-105 hover:shadow-lg">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="h-12 w-12 text-[#1e90ff]"
+                            >
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                            <h3 className="text-xl font-bold">Build Your Network</h3>
+                            <p className="text-[#808080]">Connect with fellow travelers, share your experiences, and make new friends.</p>
+                        </div>
+                        <div className="flex flex-col items-center gap-4 rounded-lg bg-white p-6 shadow-md transition-all hover:scale-105 hover:shadow-lg">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="h-12 w-12 text-[#1e90ff]"
+                            >
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                                <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                                <path d="M3 10h18"></path>
+                            </svg>
+                            <h3 className="text-xl font-bold">Plan Your Trips</h3>
+                            <p className="text-[#808080]">Easily plan and organize your upcoming trips with our intuitive tools.</p>
+                        </div>
+                        <div className="flex flex-col items-center gap-4 rounded-lg bg-white p-6 shadow-md transition-all hover:scale-105 hover:shadow-lg">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="h-12 w-12 text-[#1e90ff]"
+                            >
+                                <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path>
+                                <circle cx="12" cy="13" r="3"></circle>
+                            </svg>
+                            <h3 className="text-xl font-bold">Share Your Memories</h3>
+                            <p className="text-[#808080]">Capture and share your travel experiences with the community.</p>
+                        </div>
+                        <div className="flex flex-col items-center gap-4 rounded-lg bg-white p-6 shadow-md transition-all hover:scale-105 hover:shadow-lg">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="h-12 w-12 text-[#1e90ff]"
+                            >
+                                <path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"></path>
+                                <circle cx="12" cy="12" r="10"></circle>
+                            </svg>
+                            <h3 className="text-xl font-bold">Get Travel Advice</h3>
+                            <p className="text-[#808080]">
+                                Tap into the collective wisdom of the community and get personalized travel tips.
+                            </p>
+                        </div>
+                        <div className="flex flex-col items-center gap-4 rounded-lg bg-white p-6 shadow-md transition-all hover:scale-105 hover:shadow-lg">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="h-12 w-12 text-[#1e90ff]"
+                            >
+                                <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                                <rect width="20" height="14" x="2" y="6" rx="2"></rect>
+                            </svg>
+                            <h3 className="text-xl font-bold">Discover Travel Deals</h3>
+                            <p className="text-[#808080]">Find exclusive travel deals and discounts curated by the community.</p>
+                        </div>
+                    </div>
+                </section>
+                <section className="w-full bg-[#F0F8FF] py-16 md:py-24">
+                    <div className="container mx-auto px-4">
+                        <div className="mx-auto max-w-3xl space-y-6 text-center">
+                            <h2 className="text-3xl font-bold tracking-tighter text-[#333333] sm:text-4xl">What Our Members Say</h2>
+                            <div className="grid gap-6 md:grid-cols-2">
+                                <blockquote className="rounded-lg bg-white p-6 shadow-md">
+                                    <div className="flex items-center gap-4">
+                                        <span className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
+                                            <span className="flex h-full w-full items-center justify-center rounded-full bg-muted">JD</span>
+                                        </span>
+                                        <div>
+                                            <h4 className="text-lg font-semibold">John Doe</h4>
+                                            <p className="text-[#808080]">Frequent Traveler</p>
+                                        </div>
+                                    </div>
+                                    <p className="mt-4 text-[#808080]">
+                                        "The Trip Community has been a game-changer for me. I've connected with so many
+                                        like-minded travelers and discovered amazing destinations I never would have
+                                        found on my own."
+                                    </p>
+                                </blockquote>
+                                <blockquote className="rounded-lg bg-white p-6 shadow-md">
+                                    <div className="flex items-center gap-4">
+                                        <span className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
+                                            <span className="flex h-full w-full items-center justify-center rounded-full bg-muted">JS</span>
+                                        </span>
+                                        <div>
+                                            <h4 className="text-lg font-semibold">Jane Smith</h4>
+                                            <p className="text-[#808080]">Adventure Seeker</p>
+                                        </div>
+                                    </div>
+                                    <p className="mt-4 text-[#808080]">"I've been a member of the Trip Community for years and it continues to inspire me."</p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div> */}
+            <div style={{ width: '100%', height: '1500px', border: '1px solid #ccc', paddingTop:'100px'}}>
+                <iframe
+                    src="https://m.map.kakao.com/"
+                    style={{ width: '80%', height: '100%', border: 'none' }}
+                    title="Kakao Map"
+                    allowFullScreen
+                ></iframe>
             </div>
-          </div>
-          <div class="grid gap-4 bg-background rounded-lg p-6 shadow-sm">
-            <img
-              src="/placeholder.svg"
-              width="400"
-              height="300"
-              alt="iPhone 14"
-              class="mx-auto aspect-video overflow-hidden rounded-lg object-cover object-center"
-            />
-            <div class="grid gap-1">
-              <h3 class="text-lg font-bold">iPhone 14</h3>
-              <p class="text-sm text-muted-foreground">$799</p>
-              <button
-                class="whitespace-nowrap ring-offset-background focus-visible:ring-offset-2 inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                href="#"
-              >
-                Buy
-              </button>
-            </div>
-          </div>
-          <div class="grid gap-4 bg-background rounded-lg p-6 shadow-sm">
-            <img
-              src="/placeholder.svg"
-              width="400"
-              height="300"
-              alt="iPhone 13"
-              class="mx-auto aspect-video overflow-hidden rounded-lg object-cover object-center"
-            />
-            <div class="grid gap-1">
-              <h3 class="text-lg font-bold">iPhone 13</h3>
-              <p class="text-sm text-muted-foreground">$699</p>
-              <button
-                class="whitespace-nowrap ring-offset-background focus-visible:ring-offset-2 inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                href="#"
-              >
-                Buy
-              </button>
-            </div>
-          </div>
-          <div class="grid gap-4 bg-background rounded-lg p-6 shadow-sm">
-            <img
-              src="/placeholder.svg"
-              width="400"
-              height="300"
-              alt="iPhone 12"
-              class="mx-auto aspect-video overflow-hidden rounded-lg object-cover object-center"
-            />
-            <div class="grid gap-1">
-              <h3 class="text-lg font-bold">iPhone 12</h3>
-              <p class="text-sm text-muted-foreground">$599</p>
-              <button
-                class="whitespace-nowrap ring-offset-background focus-visible:ring-offset-2 inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                href="#"
-              >
-                Buy
-              </button>
-            </div>
-          </div>
-          <div class="grid gap-4 bg-background rounded-lg p-6 shadow-sm">
-            <img
-              src="/placeholder.svg"
-              width="400"
-              height="300"
-              alt="iPhone 11"
-              class="mx-auto aspect-video overflow-hidden rounded-lg object-cover object-center"
-            />
-            <div class="grid gap-1">
-              <h3 class="text-lg font-bold">iPhone 11</h3>
-              <p class="text-sm text-muted-foreground">$499</p>
-              <button
-                class="whitespace-nowrap ring-offset-background focus-visible:ring-offset-2 inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                href="#"
-              >
-                Buy
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-  <footer class="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-    <p class="text-xs text-muted-foreground">© 2024 Apple Inc. All rights reserved.</p>
-    <nav class="sm:ml-auto flex gap-4 sm:gap-6">
-      <a class="text-xs hover:underline underline-offset-4 text-primary-foreground" href="#">
-        Terms of Service
-      </a>
-      <a class="text-xs hover:underline underline-offset-4 text-primary-foreground" href="#">
-        Privacy
-      </a>
-    </nav>
-  </footer>
-</div>
-    </div>
-  )
+            <Footer />
+        </>
+    );
 }
 
-export default Testcontents
+export default TestContents;

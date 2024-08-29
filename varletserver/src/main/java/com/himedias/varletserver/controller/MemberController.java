@@ -1,3 +1,4 @@
+
 package com.himedias.varletserver.controller;
 
 import com.google.gson.Gson;
@@ -32,10 +33,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @RestController
 @RequestMapping("/member")
@@ -244,6 +242,7 @@ public class MemberController {
     }
 
 
+    // 아이디 중복 체크
     @PostMapping("/useridCheck")
     public HashMap<String, Object> useridCheck(@RequestParam("userid") String userid) {
         HashMap<String, Object> result = new HashMap<String, Object>();
@@ -253,6 +252,26 @@ public class MemberController {
         return result;
     }
 
+    // 비밀번호 확인
+    @PostMapping("/pwdCheck")
+    public HashMap<String, Object> pwdCheck(@RequestParam("password") String password, @RequestParam("userid") String userid) {
+        System.out.println(password+"/"+userid);
+        HashMap<String, Object> result = new HashMap<>();
+        Member mem = ms.getMemberByUserid(userid);
+        PasswordEncoder pe = cc.passwordEncoder(); // 암호화 방식 일관되게 설정
+        // 비밀번호 검증
+        if (pe.matches(password, mem.getPwd())) {
+            result.put("msg", "yes");
+        } else {
+            result.put("msg", "no");
+        }
+
+        return result;
+    }
+
+
+
+    // 닉네임 중복
     @PostMapping("/nicknameCheck")
     public HashMap<String, Object> nicknameCheck(@RequestParam("nickname") String nickname) {
         HashMap<String, Object> result = new HashMap<String, Object>();
@@ -261,7 +280,7 @@ public class MemberController {
         return result;
     }
 
-
+    // 회원가입
     @PostMapping("/join")
     public HashMap<String, Object> join(@RequestBody Member member) {
         HashMap<String, Object> result = new HashMap<String, Object>();
@@ -272,6 +291,8 @@ public class MemberController {
         return result;
     }
 
+
+    // 이미지 업로드
     @PostMapping("/fileupload")
     public HashMap<String, Object> fileupload(@RequestParam("image") MultipartFile file) {
 
@@ -294,7 +315,7 @@ public class MemberController {
         return result;
     }
 
-
+    // 리프레시 토큰
     @GetMapping("/refresh/{refreshToken}")
     public Map<String, Object> refresh(@RequestHeader("Authorization") String authHeader,
                                        @PathVariable("refreshToken") String refreshToken
@@ -325,6 +346,8 @@ public class MemberController {
         return Map.of("access_token", newAccessToken, "refresh_token", newRefreshToken);
     }
 
+
+    // 토큰 시간 체크
     private boolean checkTime(Integer exp) {
         java.util.Date expDate = new java.util.Date((long) exp * (1000)); // 밀리초로 변환
         long gap = expDate.getTime() - System.currentTimeMillis(); // 현재 시간과의 차이 계산
@@ -344,56 +367,49 @@ public class MemberController {
         return false;
     }
 
-
+    // 정보수정
     @PostMapping("/updateInfo")
-    public HashMap<String, Object> updateInfo(@RequestBody Member member, HttpServletRequest request) {
+    public HashMap<String, Object> updateInfo(@RequestBody Member member) {
 
         HashMap<String, Object> result = new HashMap<String, Object>();
         PasswordEncoder pe = cc.passwordEncoder();
         member.setPwd(pe.encode(member.getPwd()));
 
         ms.updateInfo(member);
-        HttpSession session = request.getSession();
-        session.setAttribute("loginUser", member);
-
         result.put("msg", "ok");
         return result;
     }
 
-    @GetMapping("/userReviews/{userid}/{page}/{size}")
-    public HashMap<String, Object> userReviews(
-            @PathVariable("userid") String userid,
-            @PathVariable("page") int page,
-            @PathVariable("size") int size) {
-        HashMap<String, Object> result = new HashMap<>();
-        try {
-            Paging paging = new Paging();
-            paging.setPage(page);
-            paging.setDisplayRow(size);
-            paging.setSort(Sort.by(Sort.Order.desc("indate")));
-
-            Page<Review> reviewPage = ms.getReviewsByUser(userid, paging);
-
-            paging.setTotalCount((int) reviewPage.getTotalElements());
-            paging.calPaging();
-
-            result.put("reviewList", reviewPage.getContent());
-            result.put("paging", paging);
-            result.put("status", "success");
-
-        } catch (Exception e) {
-            result.put("status", "error");
-            result.put("message", e.getMessage());
-        }
-        return result;
-    }
-
-
+    // 아이디 찾기
     @PostMapping("/findId/{email}")
     public HashMap<String, Object> findId(@PathVariable("email") String email) {
         HashMap<String, Object> result = new HashMap<>();
         ms.sendVerificationCode(email);
         result.put("msg", "ok");
+        return result;
+    }
+
+    // 비밀번호 찾기
+    @PostMapping("/findPwd/{email}")
+    public HashMap<String, Object> findPwd(@PathVariable("email") String email) {
+        HashMap<String, Object> result = new HashMap<>();
+        ms.sendVerificationCode(email);
+        result.put("msg", "ok");
+        return result;
+    }
+
+
+    // 인증 코드 검증 및 비밀번호 반환 API
+    @GetMapping("/verifyCodeAndFindPwd/{email}/{code}")
+    public HashMap<String, Object> verifyCodeAndFindPwd(@PathVariable("email") String email,@PathVariable("code") String code) {
+        HashMap<String, Object> result = new HashMap<>();
+        String ok = ms.verifyCodeAndFindPwd(email, code);
+
+        if (ok != null) {
+            result.put("msg", "yes");
+        } else {
+            result.put("msg", "no");
+        }
         return result;
     }
 
@@ -412,7 +428,7 @@ public class MemberController {
         return result;
     }
 
-
+    // 로그아웃
     @PostMapping("/logout")
     public Map<String, Object> logout(HttpServletRequest request) {
         HashMap<String, Object> result = new HashMap<>();
@@ -422,6 +438,35 @@ public class MemberController {
         } catch (Exception e) {
             e.printStackTrace();
             result.put("msg", "error");
+        }
+        return result;
+    }
+
+    // 프로필 사진 불러오기
+    @GetMapping("/getMyProfileImg/{userid}")
+    public Map<String, Object> getMyProfileImg(@RequestParam("userid") String userid) {
+        Map<String, Object> result = new HashMap<>();
+        String profileImgUrl = ms.getProfileImageUrl(userid);
+        result.put("profileImgUrl", profileImgUrl);
+        System.out.println("뭔데 그래서~~~~~~~~~~~~" + profileImgUrl);
+        return result;
+    }
+
+
+    // 이메일 중복처리
+    @GetMapping("/checkEmail")
+    public HashMap<String, Object> checkEmail(@RequestParam("email") String email) {
+        HashMap<String, Object> result = new HashMap<>();
+        try {
+            boolean isEmailUnique = ms.isEmailUnique(email);
+            if (isEmailUnique) {
+                result.put("msg", "yes"); // 이메일이 중복되지 않음
+            } else {
+                result.put("msg", "no"); // 이메일 중복됨
+            }
+        } catch (Exception e) {
+            result.put("msg", "error"); // 예외 처리
+            e.printStackTrace();
         }
         return result;
     }

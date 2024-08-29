@@ -14,10 +14,26 @@ public class TimetableController {
     @Autowired
     TimetableService ts;
 
-    @PostMapping("/inserTimetable")
-    public HashMap<String, Object> join(@RequestBody Timetable timetable){
+    @GetMapping("/getAllMyCourse/{userid}")
+    public HashMap<String,Object> getAllMyCourse(@PathVariable String userid) {
+        HashMap<String,Object> result = new HashMap<String,Object>();
+        result.put("mycourse",ts.getAllMyCourse(userid));
+//        result.put("mycourse",cs.getAllMycourseByUserid(userid));
+        return result;
+    }
+
+    @PostMapping("/insertTimetable")
+    public HashMap<String, Object> insertTimetable(@RequestBody Timetable timetable){
         HashMap<String, Object> result = new HashMap<String, Object>();
         ts.insertTimetable(timetable);
+        return result;
+    }
+
+    @PostMapping("/deleteTimetable/{tseq}")
+    public HashMap<String, Object> deleteTimetable(@PathVariable String tseq){
+        HashMap<String, Object> result = new HashMap<String, Object>();
+        ts.deleteTimetable(tseq);
+        result.put("msg","ok");
         return result;
     }
 

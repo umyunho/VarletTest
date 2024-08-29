@@ -3,21 +3,17 @@ package com.himedias.varletserver.service;
 
 
 import com.himedias.varletserver.dao.MemberRepository;
-import com.himedias.varletserver.dto.Paging;
+import com.himedias.varletserver.dao.ReviewRepository;
 import com.himedias.varletserver.entity.Member;
 import com.himedias.varletserver.entity.Review;
+import com.himedias.varletserver.security.CustomSecurityConfig;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 @Service
 @Transactional
@@ -39,18 +35,14 @@ public class MemberService {
         }
     }
 
-//    @Autowired
-//    FollowRepository fr;
-//
-//    public List<Follow> getFollowings(String nickname) {
-//        List<Follow> list = fr.findByFfrom( nickname );
-//        return list;
-//    }
-//
-//    public List<Follow> getFollowers(String nickname) {
-//        List<Follow> list = fr.findByFto( nickname );
-//        return list;
-//    }
+    public Member getMemberByUserid(String userid) {
+        Optional<Member> mem = mr.findByUserid( userid );
+        if( !mem.isPresent() ){
+            return null;
+        }else {
+            return mem.get();
+        }
+    }
 
     public Member getMemberBySnsid(String id) {
         Optional<Member> mem = mr.findBySnsid( id );
@@ -69,24 +61,6 @@ public class MemberService {
         return mr.existsByNickname( nickname );
     }
 
-//    public void onFollow(String ffrom, String fto) {
-//        // ffrom 과 fto 로 전달된 값으로 레코드가 있는지 검사
-//        Optional<Follow> rec = fr.findByFfromAndFto(ffrom, fto);
-//        if( !rec.isPresent() ){
-//            Follow f = new Follow();
-//            f.setFfrom(ffrom);
-//            f.setFto(fto);
-//            fr.save( f );
-//        }
-//    }
-
-//    public void onUnFollow(String ffrom, String fto) {
-//        Optional<Follow> rec = fr.findByFfromAndFto(ffrom, fto);
-//        if( rec.isPresent() ){
-//            fr.deleteById( rec.get().getId() );
-//            //fr.delete( rec.get() );
-//        }
-//    }
 
     @Autowired
     private HttpSession session;
@@ -110,7 +84,7 @@ public class MemberService {
                     member.getNickname(),
                     member.getEmail(),
                     member.getPhone(),
-                    member.getZipCode(),
+                    member.getZip_code(),
                     member.getAddress(),
                     member.getD_address(),
                     member.getProfileimg()
@@ -119,14 +93,6 @@ public class MemberService {
             // 기존 사용자가 없으면 에러 처리
             throw new IllegalArgumentException("해당 회원이 존재하지 않습니다.");
         }
-    }
-
-    public Page<Review> getReviewsByUser(String userid, Paging paging) {
-        int pageNumber = paging.getPage() - 1; // PageRequest uses 0-based index
-        int pageSize = paging.getDisplayRow();
-        PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, paging.getSort());
-
-        return mr.findByUserid(userid, pageRequest);
     }
 
     @Autowired
@@ -162,4 +128,34 @@ public class MemberService {
             return null;
         }
     }
+
+
+    public String getProfileImageUrl(String userid) {
+        Member member = mr.findByUserId(userid);
+        if (member != null && member.getProfileimg() != null) {
+            return member.getProfileimg(); // 프로필 이미지 URL 반환
+
+        }
+        return null; // 프로필 이미지가 없으면 null 반환
+
+    }
+
+    public boolean isEmailUnique(String email) {
+        return !mr.existsByEmail(email);
+    }
+
+    public String verifyCodeAndFindPwd(String email, String code) {
+        String storedCode = verificationCodes.get(email);
+
+        if (storedCode != null && storedCode.equals(code)) {
+            verificationCodes.remove(email); // 검증 후 코드 삭제
+            return "ok";
+        } else {
+            return null;
+        }
+    }
+    @Autowired
+    CustomSecurityConfig cc;
+
+
 }

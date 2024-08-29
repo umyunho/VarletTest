@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import jaxios from '../../util/jwtUtil';
-import { getCookie } from '../../util/cookieUtil';
 import moment from 'moment';
 
 
@@ -67,14 +66,6 @@ function RCommunityUpdate() {
     setLocation2(event.target.value !== '전체' ? event.target.value : '');
   };
 
-  const onInputChange = (event) => {
-    const { name, value } = event.target;
-    if (name === 'startDate') {
-      setStartDate(value);
-    } else if (name === 'endDate') {
-      setEndDate(value);
-    }
-  };
 
   const RewardChange = (event) => {
     const { value } = event.target;
@@ -113,14 +104,6 @@ function RCommunityUpdate() {
     if (window.confirm('수정을 취소하시겠습니까?')) {
       navigate('/rcommunity');
     }
-  };
-
-  const formatDate = (dateString) => {
-    if (!dateString) return '';
-    // Date 객체 생성
-    const date = new Date(dateString);
-    // yyyy-mm-dd 형식으로 변환
-    return date.toISOString().split('T')[0];
   };
 
   const today = new Date();
@@ -266,7 +249,7 @@ function RCommunityUpdate() {
         </div>
         <div class="grid gap-4">
           <label class="font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-lg" for="points">
-            Points
+            포인트는 수정이 불가능합니다.
           </label>
           <input
             class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 text-base"
@@ -274,7 +257,7 @@ function RCommunityUpdate() {
             id="points"
             value={reward}
             onChange={RewardChange}
-            required
+            readOnly
             placeholder="Enter points"
           />
         </div>
